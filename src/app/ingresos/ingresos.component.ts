@@ -2,6 +2,8 @@ import { ingresos } from './../_models/ingresos';
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../_services/common.service';
 import 'rxjs/add/operator/map'
+import { ingresoObj } from '../_helpers/ingresoObj';
+import * as Handsontable from 'handsontable'
 
 
 @Component({
@@ -11,6 +13,8 @@ import 'rxjs/add/operator/map'
 })
 export class IngresosComponent implements OnInit {
   ingresos: ingresos[];
+  columns = ingresoObj;
+
 
   constructor(private common: CommonService) { }
 
@@ -22,19 +26,7 @@ export class IngresosComponent implements OnInit {
     this.common.getIngresos(1).subscribe(response => {
       this.ingresos = response;
       console.log(response);
-    }, error => {
-      console.log(error);
     });
-  }
-
-  getIngresosMap(): void {
-    this.common.getIngresos(1)
-      .map(ele => {
-        console.log(ele);
-      })
-      .subscribe(response => {
-        // this.ingresos.push(response);
-      });
   }
 
 }

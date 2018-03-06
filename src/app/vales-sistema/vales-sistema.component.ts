@@ -1,3 +1,4 @@
+import { gastoObj } from './../_helpers/gastoObj';
 import { CommonService } from './../_services/common.service';
 import { gastos } from './../_models/gastos';
 import { Component, OnInit } from '@angular/core';
@@ -9,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ValesSistemaComponent implements OnInit {
   valesSistema: gastos[];
+  columns = gastoObj;
 
   constructor(private common: CommonService) { }
 

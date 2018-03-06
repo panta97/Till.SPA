@@ -1,5 +1,7 @@
-<ul>
-  <li *ngFor="let vale of valesDiarios$ | async">
-    {{vale.type}}
-  </li>
-</ul>
+<hot-table
+[colHeaders]="true"
+[rowHeaders]="true"
+[columns]="columns"
+[data]="valesDiarios"
+>
+</hot-table>

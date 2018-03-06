@@ -1,5 +1,7 @@
-<ul>
-  <li *ngFor="let ingreso of ingresos">
-    {{ingreso | json}}
-  </li>
-</ul>
+<hot-table
+[colHeaders]="true"
+[rowHeaders]="true"
+[columns]="columns"
+[data]="ingresos"
+>
+</hot-table>

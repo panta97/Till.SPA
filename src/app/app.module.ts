@@ -9,7 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ValesDiariosComponent } from './vales-diarios/vales-diarios.component';
 import { ValesSistemaComponent } from './vales-sistema/vales-sistema.component';
 import { IngresosComponent } from './ingresos/ingresos.component';
-
+import { HotTableModule } from '@handsontable/angular';
+import { TableService } from './_services/table.service';
 
 @NgModule({
   declarations: [
@@ -21,10 +22,12 @@ import { IngresosComponent } from './ingresos/ingresos.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HotTableModule
   ],
   providers: [
-    CommonService
+    CommonService,
+    TableService
   ],
   bootstrap: [AppComponent]
 })
