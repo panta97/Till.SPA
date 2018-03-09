@@ -1,3 +1,4 @@
+import { TableService } from './../_services/table.service';
 import { gastoObj } from './../_helpers/gastoObj';
 import { CommonService } from './../_services/common.service';
 import { gastos } from './../_models/gastos';
@@ -12,7 +13,9 @@ export class ValesSistemaComponent implements OnInit {
   valesSistema: gastos[];
   columns = gastoObj;
 
-  constructor(private common: CommonService) { }
+  constructor(
+    private common: CommonService,
+    private table: TableService) { }
 
   ngOnInit() {
     this.getValesSistema();
@@ -22,6 +25,11 @@ export class ValesSistemaComponent implements OnInit {
     this.common.getVales(1, 'sistema').subscribe(response => {
       this.valesSistema = response;
     });
+  }
+
+  onDataChange(): void {
+    const row = this.table.getDataAtRow('hotInstance');
+    console.log(row);
   }
 
 }

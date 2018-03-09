@@ -1,3 +1,4 @@
+import { TableService } from './../_services/table.service';
 import { gastoObj } from './../_helpers/gastoObj';
 import { CommonService } from './../_services/common.service';
 import { gastos } from './../_models/gastos';
@@ -14,7 +15,9 @@ export class ValesDiariosComponent implements OnInit {
   columns = gastoObj;
   valesDiarios$;
 
-  constructor(private common: CommonService) { }
+  constructor(
+    private common: CommonService,
+    private table: TableService) { }
 
   ngOnInit() {
     this.getValesDiarios();
@@ -28,6 +31,11 @@ export class ValesDiariosComponent implements OnInit {
 
   getValesDiarios$(): void {
     this.valesDiarios$ = this.common.getVales(1, 'diario');
+  }
+
+  onDataChange(): void {
+    const row = this.table.getDataAtRow('hotInstance');
+    console.log(row);
   }
 
 }

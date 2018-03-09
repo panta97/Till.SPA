@@ -12,18 +12,16 @@ export let ingresoObj: object[] = [
   {
     data: 'denomination',
     title: 'Denominación',
-    type: 'numeric',
-    numericFormat: {
-      pattern: '0,0.00'
-    },
+    // type: 'numeric',
+    // numericFormat: {
+    //   pattern: '0,0.00'
+    // },
     readOnly: true,
   },
   {
     data: 'amount',
     title: 'Cantidad',
-    type: 'numeric',
-    numericFormat: {
-      pattern: '0,0.00'
-    },
+    // type: 'numeric',
+    // format: '0,0.00'
   },
 ];

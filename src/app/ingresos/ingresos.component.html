@@ -1,7 +1,11 @@
 <hot-table
+ hotId="hotInstance"
 [colHeaders]="true"
 [rowHeaders]="true"
 [columns]="columns"
 [data]="ingresos"
+(afterChange)="onDataChange($event)"
 >
 </hot-table>
+
+<!-- (afterSetDataAtCell)="syncSelection($event)" -->

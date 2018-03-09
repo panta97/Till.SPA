@@ -11,9 +11,7 @@ export let gastoObj: object[] = [
   {
     data: 'amount',
     title: 'Monto',
-    type: 'numeric',
-    numericFormat: {
-      pattern: '0,0.00'
-    },
+    // type: 'numeric',
+    // format: '0,0.00'
   },
 ];

@@ -1,7 +1,9 @@
 <hot-table
+ hotId="hotInstance"
 [colHeaders]="true"
 [rowHeaders]="true"
 [columns]="columns"
 [data]="valesDiarios"
+(afterChange)="onDataChange($event)"
 >
 </hot-table>

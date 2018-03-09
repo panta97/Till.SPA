@@ -1,3 +1,4 @@
+import { ingresoUpdate } from './../_models/ingresoUpdate';
 import { gastos } from './../_models/gastos';
 import { ingresos } from './../_models/ingresos';
 import { environment } from './../../environments/environment';
@@ -24,6 +25,14 @@ export class CommonService {
 
 
     return this.http.get<gastos[]>(`${this.baseUrl}expenses`, { params });
+  }
+
+  updateIngresos(arr: any): void {
+
+    const updatedIngreso: ingresoUpdate = new ingresoUpdate(arr[0], arr[1], arr[2]);
+
+    this.http.put(`${this.baseUrl}earnings`, updatedIngreso);
+
   }
 
 }

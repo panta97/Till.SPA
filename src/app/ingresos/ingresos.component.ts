@@ -1,3 +1,4 @@
+import { TableService } from './../_services/table.service';
 import { ingresos } from './../_models/ingresos';
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../_services/common.service';
@@ -16,7 +17,9 @@ export class IngresosComponent implements OnInit {
   columns = ingresoObj;
 
 
-  constructor(private common: CommonService) { }
+  constructor(
+    private common: CommonService, 
+    private table: TableService) { }
 
   ngOnInit() {
     this.getIngresos();
@@ -25,8 +28,12 @@ export class IngresosComponent implements OnInit {
   getIngresos(): void {
     this.common.getIngresos(1).subscribe(response => {
       this.ingresos = response;
-      console.log(response);
-    });
+    }); 
+  }
+
+  onDataChange(): void {
+    const row = this.table.getDataAtRow('hotInstance');
+    console.log(row);
   }
 
 }
