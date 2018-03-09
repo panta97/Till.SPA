@@ -1,3 +1,4 @@
+import { LocalStorageService } from './../_services/local-storage.service';
 import { TableService } from './../_services/table.service';
 import { gastoObj } from './../_helpers/gastoObj';
 import { CommonService } from './../_services/common.service';
@@ -11,16 +12,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ValesDiariosComponent implements OnInit {
 
-  valesDiarios: gastos[];
+  valesDiarios: gastos[] = JSON.parse(localStorage.getItem('diario'));
   columns = gastoObj;
   valesDiarios$;
 
   constructor(
     private common: CommonService,
-    private table: TableService) { }
+    private table: TableService,
+    private local: LocalStorageService) { }
 
   ngOnInit() {
-    this.getValesDiarios();
+    // this.getValesDiarios();
   }
 
   getValesDiarios(): void {
@@ -35,7 +37,11 @@ export class ValesDiariosComponent implements OnInit {
 
   onDataChange(): void {
     const row = this.table.getDataAtRow('hotInstance');
-    this.common.updateGasto(row, 1);
+
+    if (row !== undefined) {
+      this.local.updateGasto(row, 'diario')
+      this.common.updateGasto(row, 1);
+    }
   }
 
 }

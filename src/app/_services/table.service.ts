@@ -9,13 +9,16 @@ export class TableService {
   getDataAtRow(id: string) {
     const hot = this._hotRegisterer.getInstance(id);
     let coordY, coordX;
-    [coordY, coordX] = hot.getSelected();
 
-    // console.log(hot.countRows());
+    if(hot !== undefined){
+      [coordY, coordX] = hot.getSelected();
 
-    let y = parseInt(coordY, 10);
-
-    return hot.getDataAtRow(y);
+      // console.log(hot.countRows());
+  
+      let y = parseInt(coordY, 10);
+  
+      return hot.getDataAtRow(y);
+    }
   }
 
 }

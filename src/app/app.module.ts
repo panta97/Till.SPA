@@ -11,6 +11,7 @@ import { ValesSistemaComponent } from './vales-sistema/vales-sistema.component';
 import { IngresosComponent } from './ingresos/ingresos.component';
 import { HotTableModule } from 'angular-handsontable';
 import { TableService } from './_services/table.service';
+import { LocalStorageService } from './_services/local-storage.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { TableService } from './_services/table.service';
   ],
   providers: [
     CommonService,
-    TableService
+    TableService,
+    LocalStorageService
   ],
   bootstrap: [AppComponent]
 })

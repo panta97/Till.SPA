@@ -1,3 +1,4 @@
+import { LocalStorageService } from './../_services/local-storage.service';
 import { TableService } from './../_services/table.service';
 import { gastoObj } from './../_helpers/gastoObj';
 import { CommonService } from './../_services/common.service';
@@ -10,15 +11,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./vales-sistema.component.css']
 })
 export class ValesSistemaComponent implements OnInit {
-  valesSistema: gastos[];
+  valesSistema: gastos[] = JSON.parse(localStorage.getItem('sistema'));
   columns = gastoObj;
 
   constructor(
     private common: CommonService,
-    private table: TableService) { }
+    private table: TableService,
+    private local: LocalStorageService) { }
 
   ngOnInit() {
-    this.getValesSistema();
+    // this.getValesSistema();
   }
 
   getValesSistema(): void {
@@ -29,7 +31,12 @@ export class ValesSistemaComponent implements OnInit {
 
   onDataChange(): void {
     const row = this.table.getDataAtRow('hotInstance');
-    this.common.updateGasto(row, 1);
+
+
+    if (row !== undefined) {
+      this.local.updateGasto(row, 'sistema');
+      this.common.updateGasto(row, 1);
+    }
   }
 
 }
