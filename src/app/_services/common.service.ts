@@ -1,3 +1,4 @@
+import { gastoUpdate } from './../_models/gastoUpdate';
 import { ingresoUpdate } from './../_models/ingresoUpdate';
 import { gastos } from './../_models/gastos';
 import { ingresos } from './../_models/ingresos';
@@ -27,11 +28,30 @@ export class CommonService {
     return this.http.get<gastos[]>(`${this.baseUrl}expenses`, { params });
   }
 
-  updateIngresos(arr: any): void {
+  updateIngreso(arr: any, cajaId: number): void {
 
-    const updatedIngreso: ingresoUpdate = new ingresoUpdate(arr[0], arr[1], arr[2]);
+    const updatedIngreso: ingresoUpdate = new ingresoUpdate(cajaId, arr[0], +arr[3]);
 
-    this.http.put(`${this.baseUrl}earnings`, updatedIngreso);
+    this.http.put<ingresoUpdate>(`${this.baseUrl}earnings`, updatedIngreso)
+      .subscribe(() => {
+        console.log('updated successfuly');
+      }, () => {
+        console.log('there is an error');
+      });
+
+  }
+
+
+  updateGasto(arr: any, cajaId: number): void {
+
+    const updatedGasto: gastoUpdate = new gastoUpdate(cajaId, arr[0], +arr[2], arr[1]);
+
+    this.http.put<gastoUpdate>(`${this.baseUrl}expenses`, updatedGasto)
+      .subscribe(() => {
+        console.log('updated successfuly');
+      }, () => {
+        console.log('there is an error');
+      });
 
   }
 

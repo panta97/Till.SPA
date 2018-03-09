@@ -33,7 +33,7 @@ export class IngresosComponent implements OnInit {
 
   onDataChange(): void {
     const row = this.table.getDataAtRow('hotInstance');
-    console.log(row);
+    this.common.updateIngreso(row, 1);
   }
 
 }
