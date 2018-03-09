@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../_services/common.service';
 import 'rxjs/add/operator/map'
 import { ingresoObj } from '../_helpers/ingresoObj';
-import * as Handsontable from 'handsontable'
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -14,7 +14,7 @@ import * as Handsontable from 'handsontable'
   styleUrls: ['./ingresos.component.css']
 })
 export class IngresosComponent implements OnInit {
-  ingresos: ingresos[] = JSON.parse(localStorage.getItem('ingresos'));
+  ingresos: ingresos[] = JSON.parse(localStorage.getItem(environment.ingreso));
   columns = ingresoObj;
 
 

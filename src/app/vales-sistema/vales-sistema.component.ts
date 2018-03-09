@@ -4,6 +4,7 @@ import { gastoObj } from './../_helpers/gastoObj';
 import { CommonService } from './../_services/common.service';
 import { gastos } from './../_models/gastos';
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-vales-sistema',
@@ -11,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./vales-sistema.component.css']
 })
 export class ValesSistemaComponent implements OnInit {
-  valesSistema: gastos[] = JSON.parse(localStorage.getItem('sistema'));
+  valesSistema: gastos[] = JSON.parse(localStorage.getItem(environment.valeSistema));
   columns = gastoObj;
 
   constructor(
@@ -24,7 +25,7 @@ export class ValesSistemaComponent implements OnInit {
   }
 
   getValesSistema(): void {
-    this.common.getVales(1, 'sistema').subscribe(response => {
+    this.common.getVales(1, environment.valeSistema).subscribe(response => {
       this.valesSistema = response;
     });
   }
@@ -34,7 +35,7 @@ export class ValesSistemaComponent implements OnInit {
 
 
     if (row !== undefined) {
-      this.local.updateGasto(row, 'sistema');
+      this.local.updateGasto(row, environment.valeSistema);
       this.common.updateGasto(row, 1);
     }
   }

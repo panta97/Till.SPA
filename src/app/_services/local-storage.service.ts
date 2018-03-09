@@ -1,6 +1,7 @@
 import { ingresos } from './../_models/ingresos';
 import { Injectable } from '@angular/core';
 import { gastos } from '../_models/gastos';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class LocalStorageService {
@@ -10,7 +11,7 @@ export class LocalStorageService {
 
   updateIngreso(arr: any): void {
 
-    let data: ingresos[] = JSON.parse(localStorage.getItem('ingresos'));
+    let data: ingresos[] = JSON.parse(localStorage.getItem(environment.ingreso));
 
     data = data.map((ingreso, index) => {
       if (ingreso.id === arr[0]) {
@@ -24,8 +25,8 @@ export class LocalStorageService {
       return ingreso;
     });
 
-    localStorage.removeItem('ingresos');
-    localStorage.setItem('ingresos', JSON.stringify(data));
+    localStorage.removeItem(environment.ingreso);
+    localStorage.setItem(environment.ingreso, JSON.stringify(data));
 
   }
 
