@@ -35,7 +35,7 @@ export class IngresosComponent implements OnInit {
 
   onDataChange(): void {
     const row = this.table.getDataAtRow('hotInstance');
-
+    
     if (row !== undefined) {
       this.local.updateIngreso(row);
       this.common.updateIngreso(row, 1);

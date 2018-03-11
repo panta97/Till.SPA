@@ -12,13 +12,15 @@ import { IngresosComponent } from './ingresos/ingresos.component';
 import { HotTableModule } from 'angular-handsontable';
 import { TableService } from './_services/table.service';
 import { LocalStorageService } from './_services/local-storage.service';
+import { PrincipalComponent } from './principal/principal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ValesDiariosComponent,
     ValesSistemaComponent,
-    IngresosComponent
+    IngresosComponent,
+    PrincipalComponent
 ],
   imports: [
     BrowserModule,
