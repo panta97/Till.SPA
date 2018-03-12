@@ -24,4 +24,9 @@ export let ingresoObj: object[] = [
     // type: 'numeric',
     // format: '0,0.00'
   },
+  {
+    data: 'total',
+    title: 'Total',
+    readOnly: true,
+  },
 ];

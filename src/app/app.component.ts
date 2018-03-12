@@ -27,7 +27,10 @@ export class AppComponent implements OnInit{
 
     this.common.getIngresos(cajaId)
       .subscribe(response => {
-        this.ingresos = response;
+        this.ingresos = response.map((ingreso) => {
+					ingreso.total = +(ingreso.denomination * ingreso.amount).toFixed(2);
+					return ingreso;
+				});
 				localStorage.setItem("ingresos", JSON.stringify(this.ingresos));
 			}, () => {
 			});

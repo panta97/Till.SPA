@@ -28,7 +28,7 @@ export class LocalStorageService {
     localStorage.removeItem(environment.ingreso);
     localStorage.setItem(environment.ingreso, JSON.stringify(data));
 
-  }
+  };
 
   updateGasto(arr: any, gastoType: string): void {
 
@@ -47,5 +47,18 @@ export class LocalStorageService {
     localStorage.removeItem(gastoType);
     localStorage.setItem(gastoType, JSON.stringify(data));
     
+  };
+
+  updateTotal(ingresos: ingresos[]): ingresos[] {
+    let newIngresos = ingresos.map((ingreso) => {
+      ingreso.total = +(ingreso.denomination * ingreso.amount).toFixed(2);
+      return ingreso;
+    });
+
+    localStorage.removeItem(environment.ingreso);
+    localStorage.setItem(environment.ingreso, JSON.stringify(newIngresos));
+
+    return newIngresos;
   }
+  
 }

@@ -1,3 +1,4 @@
+import { ingresoUpdate } from './../_models/ingresoUpdate';
 import { LocalStorageService } from './../_services/local-storage.service';
 import { TableService } from './../_services/table.service';
 import { ingresos } from './../_models/ingresos';
@@ -36,11 +37,16 @@ export class IngresosComponent implements OnInit {
   onDataChange(): void {
     const row = this.table.getDataAtRow('hotInstance');
     
-    if (row !== undefined) {
+    if (row !== undefined && this.table.valueChanged(row)) {
       this.local.updateIngreso(row);
-      this.common.updateIngreso(row, 1);
+      this.common.updateIngresoVer2(row, 1)
+        .subscribe(() => {
+          this.ingresos = this.local.updateTotal(this.ingresos);
+          this.table.tableReload('hotInstance');
+          console.log('updated successfuly');
+        });
     }
-
+    
   }
 
 }

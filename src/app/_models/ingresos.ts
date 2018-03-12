@@ -3,4 +3,5 @@ export interface ingresos {
   type: string;
   denomination: number;
   amount: number;
+  total: number;
 }

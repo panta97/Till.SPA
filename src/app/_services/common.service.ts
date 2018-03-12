@@ -41,6 +41,13 @@ export class CommonService {
 
   }
 
+  updateIngresoVer2(arr: any, cajaId: number): Observable<any> {
+
+    const updatedIngreso: ingresoUpdate = new ingresoUpdate(cajaId, arr[0], +arr[3]);
+
+    return this.http.put<ingresoUpdate>(`${this.baseUrl}earnings`, updatedIngreso);
+  }
+
 
   updateGasto(arr: any, cajaId: number): void {
 
