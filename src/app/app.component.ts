@@ -48,5 +48,5 @@ export class AppComponent implements OnInit{
 				localStorage.setItem("sistema", JSON.stringify(this.valesSistema));
 			});
     
-  }
+	}
 }

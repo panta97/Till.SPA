@@ -1,0 +1,20 @@
+<div class="card">
+  <div class="title">
+    <h2>Ingresar</h2>
+  </div>
+  <div class="form">
+    <form #loginForm="ngForm" (ngSubmit)="login()">
+      <div class="input-text">
+        <label for="username">usuario: </label>
+        <input id="username" type="text" required name="username" [(ngModel)]="model.username">
+      </div>
+      <div class="input-password">
+        <label for="password">contraseña: </label>
+        <input id="password"  type="password" required name="password" [(ngModel)]="model.password">
+      </div>
+      <div class="btn-login">
+        <button [disabled]="!loginForm.valid" type="submit">Entrar</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+.card {
+  /* display:  inline-block; */
+  width: 220px;
+  border: 3px dashed black;
+  padding: 1em;
+  margin-top: 200px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+h2 {
+  margin-top: 0;
+  text-align: center;
+}
+label {
+  cursor: pointer;
+}
+
+[class^="input"] {
+  margin-bottom: 1em;
+  text-align: right;
+}
+
+.btn-login {
+  text-align: center;
+}

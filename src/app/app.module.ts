@@ -1,3 +1,5 @@
+import { AuthGuard } from './_guards/auth.guard';
+import { AuthService } from './_services/auth.service';
 import { CommonService } from './_services/common.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -13,6 +15,8 @@ import { HotTableModule } from 'angular-handsontable';
 import { TableService } from './_services/table.service';
 import { LocalStorageService } from './_services/local-storage.service';
 import { PrincipalComponent } from './principal/principal.component';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,18 +24,22 @@ import { PrincipalComponent } from './principal/principal.component';
     ValesDiariosComponent,
     ValesSistemaComponent,
     IngresosComponent,
-    PrincipalComponent
+    PrincipalComponent,
+    LoginComponent
 ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     AppRoutingModule,
     HotTableModule
   ],
   providers: [
     CommonService,
     TableService,
-    LocalStorageService
+    LocalStorageService,
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
