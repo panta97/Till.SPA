@@ -62,4 +62,10 @@ export class CommonService {
 
   }
 
+  getStores() {
+    this.http.get(`${this.baseUrl}stores`).subscribe(response => {
+      console.log(response);
+    })
+  }
+
 }

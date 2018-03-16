@@ -1,3 +1,4 @@
+import { CajaComponent } from './caja/caja.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
@@ -10,6 +11,7 @@ import { PrincipalComponent } from './principal/principal.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent},
+  { path: 'caja', component: CajaComponent, canActivate: [AuthGuard] },
   { path: 'vales/diarios', component: ValesDiariosComponent, canActivate: [AuthGuard] },
   { path: 'vales/sistema', component: ValesSistemaComponent, canActivate: [AuthGuard] },
   { path: 'ingresos', component: IngresosComponent, canActivate: [AuthGuard] },

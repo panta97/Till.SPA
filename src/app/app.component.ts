@@ -19,7 +19,7 @@ export class AppComponent implements OnInit{
 	constructor(private common: CommonService) { }
 	
 	ngOnInit() {
-		this.initializeDataTables();
+		// this.initializeDataTables();
 	}
 
   initializeDataTables() {

@@ -1,0 +1,29 @@
+.container {
+  display: table;
+  border: 3px solid black;
+  padding: 1em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h3 {
+  margin: 0;
+  margin-bottom: 1em;
+}
+
+[class^="select"] {
+  margin-bottom: 0.5em;
+}
+
+label {
+  display: inline-block;
+  width: 50px;
+  text-align: right;
+}
+
+
+
+
+.button {
+  text-align: center;
+}

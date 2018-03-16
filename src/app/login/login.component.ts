@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.auth.login(this.model).subscribe(data => {
       console.log('logged in successfuly');
-      this.router.navigate(['/principal']);
+      this.router.navigate(['/caja']);
 
     }, error => {
       console.log('failed to login');

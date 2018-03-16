@@ -17,7 +17,12 @@ import { LocalStorageService } from './_services/local-storage.service';
 import { PrincipalComponent } from './principal/principal.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
+import { CajaComponent } from './caja/caja.component';
+import { JwtModule } from '@auth0/angular-jwt';
 
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,14 +30,21 @@ import { FormsModule } from '@angular/forms';
     ValesSistemaComponent,
     IngresosComponent,
     PrincipalComponent,
-    LoginComponent
+    LoginComponent,
+    CajaComponent
 ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    HotTableModule
+    HotTableModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:5000'],
+      }
+    })
   ],
   providers: [
     CommonService,
