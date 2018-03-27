@@ -1,26 +1,23 @@
 <div class="container">
-  <form action="">
+  <form #tallyForm="ngForm" (ngSubmit)="createTally()">
     <div class="title">
       <h3>Nuevo Cuadre</h3>
     </div>
     <div class="body">
       <div class="select-tienda">
         <label for="">Tienda: </label>
-        <select name="" id="">
-          <option value="1">abato</option>
-          <option value="2">sanmartin</option>
+        <select (change)="getTillsByStore($event.target)">
+          <option *ngFor="let store of stores" [value]="store.id">{{store.name}}</option>
         </select>
       </div>
       <div class="select-caja">
         <label for="">Caja: </label>
-        <select name="" id="">
-          <option value="1">caja 1</option>
-          <option value="2">caja 2</option>
-          <option value="3">caja 3</option>
+        <select required name="tillId" [(ngModel)]="model.tillId">
+          <option *ngFor="let till of tills" [value]="till.id">Caja {{till.number}}</option>
         </select>
       </div>
       <div class="button">
-        <button type="submit">Crear</button>
+        <button [disabled]="!tallyForm.valid" type="submit">Crear</button>
       </div>
     </div>
   </form>

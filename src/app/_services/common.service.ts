@@ -1,3 +1,4 @@
+import { tallyCreate } from './../_models/tallyCreate';
 import { gastoUpdate } from './../_models/gastoUpdate';
 import { ingresoUpdate } from './../_models/ingresoUpdate';
 import { gastos } from './../_models/gastos';
@@ -6,6 +7,9 @@ import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { stores } from '../_models/stores';
+import { tills } from '../_models/tills';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 @Injectable()
@@ -62,10 +66,24 @@ export class CommonService {
 
   }
 
-  getStores() {
-    this.http.get(`${this.baseUrl}stores`).subscribe(response => {
-      console.log(response);
-    })
+  getStores(): Observable<stores[]> {
+    return this.http.get<stores[]>(`${this.baseUrl}stores`);
+  }
+
+  getTillsByStore(storeId: number): Observable<tills[]> {
+    return this.http.get<tills[]>(`${this.baseUrl}tills/${storeId}`);
+  }
+
+  createTally(tillId: number): Observable<any> {
+    const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(localStorage.getItem('token'));
+
+    const userId = +decodedToken.nameid;
+
+    const newTally: tallyCreate = new tallyCreate(0, userId, tillId);
+
+    return this.http.post<tallyCreate>(`${this.baseUrl}tallies`, newTally);
+
   }
 
 }
