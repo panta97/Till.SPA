@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { stores } from '../_models/stores';
 import { tills } from '../_models/tills';
 import { Router } from '@angular/router';
+import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-caja',
@@ -34,12 +35,21 @@ export class CajaComponent implements OnInit {
   }
 
   createTally() {
-    this.common.createTally(+this.model.tillId).subscribe(() => {
+    this.common.createTally(+this.model.tillId).subscribe((response) => {
       console.log('successfuly created');
+      console.log(response);
       this.router.navigate(['/ingresos'])
     }, error => {
       console.log(error);
     });
   }
 
+  create() {
+    this.common.createTally(+this.model.tillId)
+      .pipe(
+        mergeMap((response: any) => this.common.createEarningTemplate(response.id))
+      ).subscribe(() => {
+        this.router.navigate(['/ingresos']);
+      });
+  }
 }
