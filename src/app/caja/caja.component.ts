@@ -1,3 +1,5 @@
+import { environment } from './../../environments/environment';
+import { LocalStorageService } from './../_services/local-storage.service';
 import { CommonService } from './../_services/common.service';
 import { Component, OnInit } from '@angular/core';
 import { stores } from '../_models/stores';
@@ -16,7 +18,10 @@ export class CajaComponent implements OnInit {
   tills: tills[];
   model: any = {};
 
-  constructor(private common: CommonService, private router: Router) { }
+  constructor(
+    private common: CommonService, 
+    private router: Router, 
+    private local: LocalStorageService) { }
 
   ngOnInit() {
     this.getStores();
@@ -48,8 +53,13 @@ export class CajaComponent implements OnInit {
     this.common.createTally(+this.model.tillId)
       .pipe(
         mergeMap((response: any) => this.common.createEarningTemplate(response.id))
-      ).subscribe(() => {
-        this.router.navigate(['/ingresos']);
+      ).subscribe((responseId) => {
+
+        this.common.getIngresos(responseId).subscribe(response => {
+          localStorage.setItem(environment.ingreso, JSON.stringify(response));
+
+          this.router.navigate(['/ingresos']);
+        });
       });
   }
 }
