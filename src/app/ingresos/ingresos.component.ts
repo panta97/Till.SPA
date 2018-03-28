@@ -16,6 +16,7 @@ import { environment } from '../../environments/environment';
 })
 export class IngresosComponent implements OnInit {
   ingresos: ingresos[] = JSON.parse(localStorage.getItem(environment.ingreso));
+  tallyId: number = +localStorage.getItem(environment.tallyId);
   columns = ingresoObj;
 
 
@@ -39,7 +40,7 @@ export class IngresosComponent implements OnInit {
     
     if (row !== undefined && this.table.valueChanged(row)) {
       this.local.updateIngreso(row);
-      this.common.updateIngresoVer2(row, 1)
+      this.common.updateIngresoVer2(row, this.tallyId)
         .subscribe(() => {
           this.ingresos = this.local.updateTotal(this.ingresos);
           this.table.tableReload('hotInstance');

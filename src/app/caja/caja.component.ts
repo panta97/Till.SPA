@@ -57,6 +57,7 @@ export class CajaComponent implements OnInit {
 
         this.common.getIngresos(responseId).subscribe(response => {
           localStorage.setItem(environment.ingreso, JSON.stringify(response));
+          localStorage.setItem(environment.tallyId, responseId + '');
 
           this.router.navigate(['/ingresos']);
         });

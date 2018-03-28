@@ -8,5 +8,6 @@ export const environment = {
   apiUrl: 'http://localhost:5000/api/',
   valeDiario: 'diario',
   valeSistema: 'sistema',
-  ingreso: 'ingresos'
+  ingreso: 'ingresos',
+  tallyId: 'tallyId'
 };
