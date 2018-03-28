@@ -86,6 +86,10 @@ export class CommonService {
 
   }
 
+  getTallyDetails(tallyId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}tallies/detail/${tallyId}`);
+  }
+
   createEarningTemplate(tallyId: number): Observable<any> {
     return this.http.post(`${this.baseUrl}earnings/${tallyId}`, undefined);
   }

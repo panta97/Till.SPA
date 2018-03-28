@@ -1,4 +1,6 @@
+import { CommonService } from './../_services/common.service';
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-principal',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrincipalComponent implements OnInit {
 
-  constructor() { }
+  tallyDetail: any;
+
+  constructor(private http: CommonService) { }
 
   ngOnInit() {
+    this.getTallyDetails();
+  }
+
+  getTallyDetails() {
+    const tallyId = +localStorage.getItem(environment.tallyId);
+    this.http.getTallyDetails(tallyId).subscribe(response => {
+      this.tallyDetail = response;
+    });
   }
 
 }
