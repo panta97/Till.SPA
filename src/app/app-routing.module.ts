@@ -12,10 +12,11 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent},
   { path: 'caja', component: CajaComponent, canActivate: [AuthGuard] },
-  { path: 'vales/diarios', component: ValesDiariosComponent, canActivate: [AuthGuard] },
-  { path: 'vales/sistema', component: ValesSistemaComponent, canActivate: [AuthGuard] },
-  { path: 'ingresos', component: IngresosComponent, canActivate: [AuthGuard] },
-  { path: 'principal', component: PrincipalComponent, canActivate: [AuthGuard] },
+  { path: 'principal', component: PrincipalComponent, canActivate: [AuthGuard], children: [
+    { path: 'vales/diarios', component: ValesDiariosComponent, canActivate: [AuthGuard] },
+    { path: 'vales/sistema', component: ValesSistemaComponent, canActivate: [AuthGuard] },
+    { path: 'ingresos', component: IngresosComponent, canActivate: [AuthGuard] },
+  ]},
 ]
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
