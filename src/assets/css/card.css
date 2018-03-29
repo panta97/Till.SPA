@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+}
+
+html {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 300;
+}
+
+body {
+  background-color: #fff;
+}
+
+section {
+  display: inline-block;
+}
+
+h1 {
+  text-align: left;
+  font-weight:400;
+  display: inline-block;
+}
+
+i {
+  font-size: 180%;
+  color: #007bff;
+  float: right;
+  cursor: pointer;
+  
+}
+
+
+p {
+  font-size: 160%;
+}
+
+p.total {
+  margin-top: 15px;
+  text-align: right;
+  font-weight: 300;
+}
+
+span {
+  font-weight: 400;
+}
+
+.card {
+  background-color: #fff;
+  /* border-radius: 10px; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.title {
+  padding: 15px;
+  background-color: #e6e6e6;
+  /* border-top-left-radius: 10px;
+  border-top-right-radius: 10px; */
+
+  word-spacing: 3px;
+  letter-spacing: 0.5px;
+  font-size: 120%;
+
+  border-bottom: 1.5px solid #007bff;
+}
+
+.content {
+  padding: 20px;
+}
