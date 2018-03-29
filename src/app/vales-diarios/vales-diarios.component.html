@@ -1,9 +1,26 @@
-<hot-table
- hotId="hotInstance"
-[colHeaders]="true"
-[rowHeaders]="true"
-[columns]="columns"
-[data]="valesDiarios"
-(afterChange)="onDataChange($event)"
->
-</hot-table>
+<section>
+  <div class="card">
+      <div class="title">
+          <h1>Vales Diarios</h1>
+            <i class="ion-ios-plus-outline" (click)="addRow()"></i>
+        </div>
+
+    <div class="content">
+      <hot-table
+       hotId="hotInstance"
+      [colHeaders]="true"
+      [rowHeaders]="true"
+      [columns]="columns"
+      [data]="valesDiario"
+      (afterChange)="onDataChange($event)"
+      >
+      </hot-table>
+      
+          <p class="total"> <span>Total:</span> {{total | number : '1.2-2'}} </p>
+      
+    </div>
+
+  </div>
+
+</section>
+

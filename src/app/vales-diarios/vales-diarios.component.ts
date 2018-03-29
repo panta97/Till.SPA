@@ -5,20 +5,22 @@ import { CommonService } from './../_services/common.service';
 import { gastos } from './../_models/gastos';
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-vales-diarios',
   templateUrl: './vales-diarios.component.html',
-  styleUrls: ['./vales-diarios.component.css']
+  styleUrls: ['./vales-diarios.component.css', '/../../assets/css/card.css']
 })
 export class ValesDiariosComponent implements OnInit {
 
-  valesDiarios: gastos[] = JSON.parse(localStorage.getItem(environment.valeDiario));
+  valesDiario: gastos[] = JSON.parse(localStorage.getItem(environment.valeDiario));
+  total: number = this.local.getExpenseTotalByType(localStorage.getItem(environment.valeDiario));
   columns = gastoObj;
   valesDiarios$;
 
   constructor(
-    private common: CommonService,
+    private http: CommonService,
     private table: TableService,
     private local: LocalStorageService) { }
 
@@ -27,13 +29,13 @@ export class ValesDiariosComponent implements OnInit {
   }
 
   getValesDiarios(): void {
-    this.common.getVales(1, environment.valeDiario).subscribe(response => {
-      this.valesDiarios = response;
+    this.http.getVales(1, environment.valeDiario).subscribe(response => {
+      this.valesDiario = response;
     })
   }
 
   getValesDiarios$(): void {
-    this.valesDiarios$ = this.common.getVales(1, environment.valeDiario);
+    this.valesDiarios$ = this.http.getVales(1, environment.valeDiario);
   }
 
   onDataChange(): void {
@@ -41,8 +43,29 @@ export class ValesDiariosComponent implements OnInit {
 
     if (row !== undefined) {
       this.local.updateGasto(row, environment.valeDiario)
-      this.common.updateGasto(row, 1);
+
+      this.total = this.local.getExpenseTotalByType(localStorage.getItem(environment.valeDiario));
+
+      this.http.updateGasto(row, +localStorage.getItem(environment.tallyId));
     }
+  }
+
+  addRow(): void {
+    this.http.createExpenseByType(+localStorage.getItem(environment.tallyId), 'diario')
+      .subscribe(responseId => {
+        this.valesDiario.push(
+          {
+            id: responseId,
+            type: 'diario',
+            amount: 0,
+            description: ''
+          }
+        );
+        localStorage.setItem(environment.valeDiario, JSON.stringify(this.valesDiario))
+      }, () => {}
+      , () => {
+        this.table.tableReload('hotInstance');
+      });
   }
 
 }

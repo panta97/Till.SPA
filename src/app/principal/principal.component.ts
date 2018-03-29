@@ -28,7 +28,11 @@ export class PrincipalComponent implements OnInit {
   populateExpenses() {
     this.http.getExpensesByType(this.tallyId, 'sistema').subscribe(response => {
       localStorage.setItem(environment.valeSistema, JSON.stringify(response));
-    })
+    });
+
+    this.http.getExpensesByType(this.tallyId, 'diario').subscribe(response => {
+      localStorage.setItem(environment.valeDiario, JSON.stringify(response));
+    });
   }
 
 }

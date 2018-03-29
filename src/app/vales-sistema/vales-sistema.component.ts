@@ -14,7 +14,7 @@ import { DecimalPipe } from '@angular/common';
 })
 export class ValesSistemaComponent implements OnInit {
   valesSistema: gastos[] = JSON.parse(localStorage.getItem(environment.valeSistema));
-  total: number = this.local.getTotal();
+  total: number = this.local.getExpenseTotalByType(localStorage.getItem(environment.valeSistema));
   columns = gastoObj;
 
   constructor(
@@ -39,7 +39,7 @@ export class ValesSistemaComponent implements OnInit {
     if (row !== undefined) {
       this.local.updateGasto(row, environment.valeSistema);
 
-      this.total = this.local.getTotal();
+      this.total = this.local.getExpenseTotalByType(localStorage.getItem(environment.valeSistema));
 
       this.http.updateGasto(row, +localStorage.getItem(environment.tallyId));
     }

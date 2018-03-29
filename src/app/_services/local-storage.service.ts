@@ -61,8 +61,8 @@ export class LocalStorageService {
     return newIngresos;
   }
   
-  getTotal(): number {
-    let data: gastos[] = JSON.parse(localStorage.getItem(environment.valeSistema))
+  getExpenseTotalByType(type: string): number {
+    let data: gastos[] = JSON.parse(type)
     return data.reduce((accum, gasto) => {
       return accum + +gasto.amount;
     }, 0);
