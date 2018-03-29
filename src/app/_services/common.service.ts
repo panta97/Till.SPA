@@ -1,3 +1,4 @@
+import { expenseCreate } from './../_models/expenseCreate';
 import { tallyCreate } from './../_models/tallyCreate';
 import { gastoUpdate } from './../_models/gastoUpdate';
 import { ingresoUpdate } from './../_models/ingresoUpdate';
@@ -60,8 +61,9 @@ export class CommonService {
     this.http.put<gastoUpdate>(`${this.baseUrl}expenses`, updatedGasto)
       .subscribe(() => {
         console.log('updated successfuly');
-      }, () => {
+      }, (error) => {
         console.log('there is an error');
+        console.log(error);
       });
 
   }
@@ -92,6 +94,16 @@ export class CommonService {
 
   createEarningTemplate(tallyId: number): Observable<any> {
     return this.http.post(`${this.baseUrl}earnings/${tallyId}`, undefined);
+  }
+
+  createExpenseByType(tallyId: number, type: string): Observable<any> {
+    const newExpense = new expenseCreate(type, 0, '', tallyId);
+
+    return this.http.post(`${this.baseUrl}expenses`, newExpense);
+  }
+
+  getExpensesByType(tallyId: number, type: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}expenses/${tallyId}/${type}`);
   }
 
 }

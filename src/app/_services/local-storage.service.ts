@@ -61,4 +61,11 @@ export class LocalStorageService {
     return newIngresos;
   }
   
+  getTotal(): number {
+    let data: gastos[] = JSON.parse(localStorage.getItem(environment.valeSistema))
+    return data.reduce((accum, gasto) => {
+      return accum + +gasto.amount;
+    }, 0);
+  }
+
 }

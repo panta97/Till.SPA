@@ -58,8 +58,10 @@ export class CajaComponent implements OnInit {
         this.common.getIngresos(responseId).subscribe(response => {
           localStorage.setItem(environment.ingreso, JSON.stringify(response));
           localStorage.setItem(environment.tallyId, responseId + '');
+          localStorage.setItem(environment.valeDiario, JSON.stringify([]));
+          localStorage.setItem(environment.valeSistema, JSON.stringify([]));
 
-          this.router.navigate(['/ingresos']);
+          this.router.navigate(['/principal/ingresos']);
         });
       });
   }

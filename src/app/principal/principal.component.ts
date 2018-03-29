@@ -10,18 +10,25 @@ import { environment } from '../../environments/environment';
 export class PrincipalComponent implements OnInit {
 
   tallyDetail: any;
+  tallyId: number = +localStorage.getItem(environment.tallyId);
 
   constructor(private http: CommonService) { }
 
   ngOnInit() {
     this.getTallyDetails();
+    this.populateExpenses();
   }
 
   getTallyDetails() {
-    const tallyId = +localStorage.getItem(environment.tallyId);
-    this.http.getTallyDetails(tallyId).subscribe(response => {
+    this.http.getTallyDetails(this.tallyId).subscribe(response => {
       this.tallyDetail = response;
     });
+  }
+
+  populateExpenses() {
+    this.http.getExpensesByType(this.tallyId, 'sistema').subscribe(response => {
+      localStorage.setItem(environment.valeSistema, JSON.stringify(response));
+    })
   }
 
 }
